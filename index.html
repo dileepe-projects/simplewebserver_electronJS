@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    
+    <title>Web Server - Electron</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+   
+    <!-- Custom CSS -->
+    <link href="app.css" rel="stylesheet">
+       
+  </head>
+  <body>
+
+      <div class="container"  >
+
+          <table class="table">
+              
+              <tbody>
+                <tr>
+                  <td><span class="lbl">Port:</span></td>
+                  <td><input id="portNo" value="9090" type="text" class="form-control" required/></td>                  
+                </tr>
+                <tr>
+                  <td><span class="lbl">On?</span></td>
+                  <td>
+                      <div class="col-sm-3">
+                          <div class="onoffswitch">
+                              <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="serverSwitch">
+                              <label class="onoffswitch-label" for="serverSwitch">
+                                  <span class="onoffswitch-inner">
+                                      <span class="onoffswitch-active"><span class="onoffswitch-switch">Y</span></span>
+                                      <span class="onoffswitch-inactive"><span class="onoffswitch-switch">N</span></span>
+                                  </span>
+                              </label>
+                          </div>
+                      </div>
+                  </td>                 
+                </tr> 
+                <tr>
+                  <td><span class="lbl">Webserver URLs:</span></td>
+                  <td id="urls"></td>
+                </tr>              
+              </tbody>
+            </table>
+          
+      </div>
+    
+    
+
+    <script>
+      // You can also require other files to run in this process
+      require('./renderer')
+    </script>
+
+    
+
+  </body>
+</html>
