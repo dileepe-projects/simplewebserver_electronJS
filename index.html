@@ -14,37 +14,34 @@
   </head>
   <body>
 
-      <div class="container"  >
+      <div class="container">
+          <div class="options">
+            <label class= "btn btn-primary btn-ln" id="folderSelect" style="margin-right:30px;">Select Folder</label><span id="folderName">None</span>
+            <input id="folder" type="file" style="display:none;" webkitdirectory />
+          </div>
+          <div class="options">
+            <input type="checkbox" id="autofile"> Automatically Show "index.html"
+          </div>
+          <div class="options">
+              Port: <input type="text" value="9090" id="portNo" required/>
+            </div>
+          <div class="options">
+              <label class="switch">
+                  <input type="checkbox" id="serverSwitch">
+                  <span class="slider round"></span>
+                </label>
+                <span id="status">Stopped</span>
+          </div>
+          <div class="options">
+              Web Server URL(s):
+              <span id="urls"></span>
+          </div>
+          <div class="options">
+              <label>Files in folder:</label>
+              <textarea  class="form-control" rows="5" cols="50" id="filelist" data-role="none"></textarea>
+          </div>
 
-          <table class="table">
-              
-              <tbody>
-                <tr>
-                  <td><span class="lbl">Port:</span></td>
-                  <td><input id="portNo" value="9090" type="text" class="form-control" required/></td>                  
-                </tr>
-                <tr>
-                  <td><span class="lbl">On?</span></td>
-                  <td>
-                      <div class="col-sm-3">
-                          <div class="onoffswitch">
-                              <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="serverSwitch">
-                              <label class="onoffswitch-label" for="serverSwitch">
-                                  <span class="onoffswitch-inner">
-                                      <span class="onoffswitch-active"><span class="onoffswitch-switch">Y</span></span>
-                                      <span class="onoffswitch-inactive"><span class="onoffswitch-switch">N</span></span>
-                                  </span>
-                              </label>
-                          </div>
-                      </div>
-                  </td>                 
-                </tr> 
-                <tr>
-                  <td><span class="lbl">Webserver URLs:</span></td>
-                  <td id="urls"></td>
-                </tr>              
-              </tbody>
-            </table>
+         
           
       </div>
     
