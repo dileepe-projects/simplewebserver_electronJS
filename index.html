@@ -2,26 +2,29 @@
 <html>
   <head>
     
-    <title>Web Server - Electron</title>
+    <title>Simple Web Server</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Bootstrap Core CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="./lib/bootstrap/bootstrap.min.css">
+
+     <!--fontawesome stylesheets-->
+     <link rel="stylesheet" href="./lib/fontawesome/css/fontawesome.css">
+     <link rel="stylesheet" href="./lib/fontawesome/css/all.css">
    
     <!-- Custom CSS -->
     <link href="app.css" rel="stylesheet">
        
   </head>
   <body>
-
+      <div style="text-align:center; padding:10px; font-size:20px"><i class="fas fa-server"></i> Simple Web Server</div>
+      <hr/>
       <div class="container">
           <div class="options">
-            <label class= "btn btn-primary btn-ln" id="folderSelect" style="margin-right:30px;">Select Folder</label><span id="folderName">None</span>
+            <label class= "btn btn-primary btn-ln" id="folderSelect" style="margin-right:30px;cursor:pointer">Select Folder</label><span id="folderName">None</span>
             <input id="folder" type="file" style="display:none;" webkitdirectory />
           </div>
-          <div class="options">
-            <input type="checkbox" id="autofile"> Automatically Show "index.html"
-          </div>
+          
           <div class="options">
               Port: <input type="text" value="9090" id="portNo" required/>
             </div>
@@ -41,7 +44,10 @@
               <textarea  class="form-control" rows="5" cols="50" id="filelist" data-role="none"></textarea>
           </div>
 
-         
+          
+          <div class="options">
+            <input type="checkbox" id="backgroundRun"> Run in background
+          </div>
           
       </div>
     

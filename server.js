@@ -5,14 +5,14 @@ httpServer = require('http').createServer(app);
 const path = require('path');
 var port = "";
 var folderPath = "";
-app.use(express.static(__dirname + '/public'));
+
 var fileList = [];
 
 
 
 app.get('/', function(req, res){
-   
-    res.sendFile(path.join(__dirname, 'public/list.html'))
+    app.use(express.static(__dirname + '/public'));   
+    res.sendFile(path.join(__dirname, 'public/startpage.html'))
        
   });
   
@@ -33,8 +33,9 @@ app.get('/', function(req, res){
         process.send({ server: "http://localhost:"+port, fileList: fileList });  
         
       });
-       httpServer.listen(port);
        
+       app.use(express.static(folderPath));
+       httpServer.listen(port);
        console.log("Success: Server running @"+port); 
           
      }

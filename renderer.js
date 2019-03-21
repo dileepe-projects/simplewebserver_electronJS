@@ -1,16 +1,20 @@
 
 document.addEventListener("DOMContentLoaded", function(event) {
+
+    const { ipcRenderer } = require('electron')
+    
     // Your code to run since DOM is loaded and ready
-    const startServer = document.getElementById('start');
-    const stopServer = document.getElementById('stop');
+    
     const path = require('path');
     const { fork } = require('child_process');
-    const ps = fork(path.join(__dirname, 'server.js'))
+    const ps = fork(path.join(__dirname, 'server.js'));
+    
     var folderName = "None";
     var folderPath = "";
     const serverSwitch = document.getElementById("serverSwitch");
+    const runInBackground = document.getElementById("backgroundRun");
     var portNo = document.getElementById('portNo').value;
-    serverSwitch.disabled = true;
+    serverSwitch.disabled = true; //disable the switch initially
    
 
     
@@ -22,8 +26,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
       document.getElementById('folder').addEventListener('change', e => {
         folderName = e.target.files[0].name;
         document.getElementById('folderName').textContent = folderName;
-        folderPath = e.target.files[0].path;    
-        serverSwitch.disabled = false;
+        folderPath = e.target.files[0].path; 
+        serverSwitch.disabled = false; //enable the switch once folder is selected
         
       })
     
@@ -45,13 +49,14 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 ps.on('message', (msg) => {
                  
                     
-                    var files = "";
+                    /*var files = "";
                     for(var i=0; i<msg.fileList.length; i++)
                     {
                         files = files + "\n" + msg.fileList[i];
                         
                     }
-                    document.getElementById("filelist").value = files;
+                    document.getElementById("filelist").value = files;*/
+                    document.getElementById("filelist").value = msg.fileList.join("\n");
                     document.getElementById('urls').innerHTML = "<a href='#'>" +msg.server+ "</a>";
 
                 }); 
@@ -64,6 +69,14 @@ document.addEventListener("DOMContentLoaded", function(event) {
             ps.send({start:false});
             document.getElementById('urls').textContent = "";
             document.getElementById("filelist").value = "";
+        }
+    });
+
+
+    runInBackground.addEventListener('click', event => {
+        if(runInBackground.checked)
+        {
+            ipcRenderer.send('asynchronous-message', true);
         }
     });
 
