@@ -78,6 +78,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
         {
             ipcRenderer.send('asynchronous-message', true);
         }
+        else ipcRenderer.send('asynchronous-message', false);
     });
 
 });

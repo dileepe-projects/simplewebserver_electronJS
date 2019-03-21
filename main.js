@@ -6,9 +6,9 @@ const path = require('path');
 var runInBackground = false;
 
 ipcMain.on('asynchronous-message', (event, arg) => {
-  if(arg){
+  
     runInBackground = arg;
-  }
+
   
 })
 
@@ -54,7 +54,11 @@ function createWindow () {
         return false;
     }
 
-    else  mainWindow = null
+    else  {
+      mainWindow = null
+      app.isQuiting = true;
+      app.quit();
+    }
 
   })
 }
