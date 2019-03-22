@@ -2,6 +2,7 @@
 document.addEventListener("DOMContentLoaded", function(event) {
 
     const { ipcRenderer } = require('electron')
+    const shell = require('electron').shell;
     
     // Your code to run since DOM is loaded and ready
     
@@ -11,6 +12,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     
     var folderName = "None";
     var folderPath = "";
+    
     const serverSwitch = document.getElementById("serverSwitch");
     const runInBackground = document.getElementById("backgroundRun");
     var portNo = document.getElementById('portNo').value;
@@ -30,6 +32,11 @@ document.addEventListener("DOMContentLoaded", function(event) {
         serverSwitch.disabled = false; //enable the switch once folder is selected
         
       })
+
+      /*document.getElementById('URLs').addEventListener('click', e => {
+        event.preventDefault();
+        //shell.openExternal(this.href);
+      })*/
     
 
     serverSwitch.addEventListener('click', event => {
@@ -47,17 +54,14 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 document.getElementById("status").textContent = "Started";
                 ps.send({start:true, port:portNo, fp:folderPath});
                 ps.on('message', (msg) => {
-                 
-                    
-                    /*var files = "";
-                    for(var i=0; i<msg.fileList.length; i++)
-                    {
-                        files = files + "\n" + msg.fileList[i];
-                        
-                    }
-                    document.getElementById("filelist").value = files;*/
+                  
                     document.getElementById("filelist").value = msg.fileList.join("\n");
-                    document.getElementById('urls').innerHTML = "<a href='#'>" +msg.server+ "</a>";
+                    var link = msg.server;
+                    document.getElementById('urls').innerHTML = "<a id='viewPage' href='"+ link + "'>" +link+ "</a>";
+                    document.getElementById('viewPage').addEventListener('click', e => {
+                        e.preventDefault();
+                        shell.openExternal(link);
+                    })
 
                 }); 
             }      
