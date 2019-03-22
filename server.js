@@ -26,10 +26,12 @@ app.get('/', function(req, res){
      if(msg.start)
      {
       fs.readdir(folderPath, (err, files) => {
+        fileList = [];
         files.forEach(file => {          
           fileList.push(file);
           //console.log(file);
         });
+        
         process.send({ server: "http://localhost:"+port, fileList: fileList });  
         
       });
